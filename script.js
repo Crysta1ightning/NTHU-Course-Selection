@@ -37,6 +37,8 @@ let final_schedule = [
 let final_score = 0;
 let day_trans = {'M': 0, 'T': 1, 'W': 2, 'R': 3, 'F': 4};
 let time_trans = {'1': 0, '2': 1, '3': 2, '4': 3, 'n': 4, '5': 5, '6': 6, '7': 7, '8': 8, '9': 9, 'a': 10, 'b':11, 'c':12};
+
+/* scoring */
 function outputTable()
 {
   var table = document.getElementById("courses");
@@ -62,9 +64,8 @@ function outputTable()
   }
 }
 
-function getSelectedValue(type)
+function getSelectedValue()
 {
-    // type0->department type1->time
   selected_d = document.getElementById("department").value;
   selected_t = document.getElementById("time").value;
   outputTable();
@@ -73,16 +74,31 @@ function getSelectedValue(type)
 function scored(id)
 {
   var given_score = document.getElementById(id).value;
-  courses[id][4] = given_score;
-}
+  if(!isNaN(given_score) && !isNaN(parseInt(given_score)) && parseInt(given_score) >= 0) courses[id][4] = parseInt(given_score);
+  else{
+    alert("再亂打羊羊會去揍你喔🐑");
+    courses[id][4] = 0;
+    placer = document.getElementById(id)
+    placer.value = 0;
+  }
+} 
 
-function check_time(schedule, target_time){
+
+
+/* ranking */
+
+function check(schedule, temp_courses, target_name, target_time){
+  // check for time
   for (var i = 0; i < target_time.length; i += 2) {
     var current_day = day_trans[target_time[i]];
     var current_time = time_trans[target_time[i+1]];
     if(schedule[current_time][current_day] != '') {
       return false;
     }
+  }
+  // check for class name
+  if(temp_courses.includes(target_name)){
+    return false;
   }
   return true;
 }
@@ -96,7 +112,7 @@ function update(schedule, name, time, teacher) {
   return schedule;
 }
 
-function rec_gen(schedule, id, score) 
+function rec_gen(schedule, temp_courses, id, score) 
 {
   if(id == 18) {
     if(score > final_score){
@@ -105,25 +121,28 @@ function rec_gen(schedule, id, score)
     }
   }
   else if(courses[id][4] > 0) { // if it is scored
-    // 1. check the time to see if it is free
-    var free = check_time(schedule, courses[id][2]);
+    // 1. check to see if it is valid
+    var valid = check(schedule, temp_courses, courses[id][1], courses[id][2]);
     // 2. don't put in schedule
     schedule_2 = JSON.parse(JSON.stringify(schedule)); // here we made another schedule for recursion need
-    rec_gen(schedule_2, id+1, score);
-    // 3. put in schedule (only if time is free), plus total_score
-    if(free){
+    temp_courses2 = JSON.parse(JSON.stringify(temp_courses))
+    rec_gen(schedule_2, temp_courses2, id+1, score);
+    // 3. put in schedule (only if it is valid), plus total_score
+    if(valid){
+      temp_courses.push(courses[id][1]);
       schedule = update(schedule, courses[id][1], courses[id][2], courses[id][3]);
-      rec_gen(schedule, id+1, score+parseInt(courses[id][4]));
+      rec_gen(schedule, temp_courses, id+1, score+courses[id][4]);
     }
   }
   else {
-    rec_gen(schedule, id+1, score);
+    rec_gen(schedule, temp_courses, id+1, score);
   }
 }
+
 function generate_schedule()
 {
   var table = document.getElementById("schedule");
-  temp_schedule = [
+  var temp_schedule = [
   ['', '', '', '', ''], // 1
   ['', '', '', '', ''], // 2
   ['', '', '', '', ''], // 3
@@ -138,7 +157,8 @@ function generate_schedule()
   ['', '', '', '', ''], // B
   ['', '', '', '', ''], // C
   ]
-  rec_gen(temp_schedule, 0, 0);
+  var temp_courses = []
+  rec_gen(temp_schedule, temp_courses, 0, 0);
   alert("Generating the schedule... This might take a while");
   for (var i = 0; i <= 12; i++) { // 1~4 n 5~9 a~c
     for (var j = 0; j <= 4; j++) { // M ~ F 
