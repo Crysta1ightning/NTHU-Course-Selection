@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0">
+	<title>NTHU Course Selection</title>
+	<link rel="stylesheet" href="normalize.css">
+	<link rel="stylesheet" href="style.css">
+	<script src="script.js"></script>
+	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Raleway:700,400">
+	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.13.0/css/all.css">
+</head>
+<body>
+	<header class="header">
+	<h1 class="site-title">NTHU Course Selection</h1>
+	<p class="site-title-sub">With this, you would be able to know the best combinations of courses</p>
+	</header>
+	<section class="scoring" id="scoring">
+		<h2 class="section-heading">Scoring</h2>
+		<p class="section-heading-description">Here you give each desired class a score for future use</p>
+		<div class="menu">
+			<div class="menu-department">
+				<select name="department" id="department" onchange="getSelectedValue(0)">
+					<option value="none">選擇欲評分課程科系</option>
+					<option value="CS">CS</option>
+					<option value="ECON">ECON</option>
+					<option value="FL">FL</option>
+					<option value="GEC">GEC</option>
+					<option value="QF">QF</option>
+				</select>
+			</div>
+			<div class="menu-time">
+				<select name="time" id="time" onchange="getSelectedValue(1)">
+					<option value="none">選擇欲評分課程時段</option>
+					<option value="M">M</option>
+					<option value="T">T</option>
+					<option value="W">W</option>
+					<option value="R">R</option>
+					<option value="F">F</option>
+				</select>
+			</div>
+			<div class="table-courses">
+				<table class="courses", id="courses">
+				  <tr>
+				    <th>科號</th>
+				    <th>名稱</th>
+				    <th>時間</th>
+				    <th>教師</th>
+				    <th>評分</th>
+				  </tr>
+				  <tr>
+				    <td>11010CS 135600</td>
+				    <td>計算機程式設計二</td>
+				    <td>TaTbTc</td>
+				    <td>陳煥宗</td>
+				    <td><INPUT TYPE="NUM" NAME="SCORE" id="0" value=0 onchange="scored(0)"></td>
+				  </tr>
+				  <tr>
+				    <td>11010GEC 111502</td>
+				    <td>統計思維與分析</td>
+				    <td>F2F3F4</td>
+				    <td>張延彰</td>
+				    <td><INPUT TYPE="NUM" NAME="SCORE" id="1" value=0 onchange="scored(1)"></td>
+					</tr>
+				  <tr>
+				    <td>11010LST 350302</td>
+				    <td>法學緒論</td>
+				    <td>M7M8M9</td>
+				    <td>林昀嫺</td>
+				    <td><INPUT TYPE="NUM" NAME="SCORE" id="2" value=0 onchange="scored(2)"></td>	  
+					</tr>
+				  <tr>
+				    <td>11010PE 205009</td>
+				    <td>跆拳道</td>
+				    <td>M5M6</td>
+				    <td>戴偉國</td>
+				    <td><INPUT TYPE="NUM" NAME="SCORE" id="3" value=0 onchange="scored(3)"></td>
+		  		</tr>
+				  <tr>
+				    <td>11010QF 214401</td>
+				    <td>統計學一</td>
+				    <td>M3M4W2</td>
+				    <td>余士迪</td>
+				    <td><INPUT TYPE="NUM" NAME="SCORE" id="4" value=0 onchange="scored(4)"></td>
+				  </tr>
+				  <tr>
+				    <td>11010QF 214800</td>
+				    <td>線性代數</td>
+				    <td>T5T6R5</td>
+				    <td>韓傳祥</td>
+				    <td><INPUT TYPE="NUM" NAME="SCORE" id="5" value=0 onchange="scored(5)"></td>
+				  </tr>
+				  <tr>
+				    <td>11010QF 322100</td>
+				    <td>不動產財務管理</td>
+				    <td>R6R7</td>
+				    <td>林哲群</td>
+				    <td><INPUT TYPE="NUM" NAME="SCORE" id="6" value=0 onchange="scored(6)"></td>
+				  </tr>
+				  <tr>
+				    <td>11010FL 102802</td>
+				    <td>進階英文：閱讀與討論</td>
+				    <td>M1M2</td>
+				    <td>呂文仁</td>
+				    <td><INPUT TYPE="NUM" NAME="SCORE" id="7" value=0 onchange="scored(7)"></td>
+				  </tr>
+				  <tr>
+				    <td>11010ECON 206102</td>
+				    <td>個體經濟學一</td>
+				    <td>W8W9Wa</td>
+				    <td>黃賀寶</td>
+				    <td><INPUT TYPE="NUM" NAME="SCORE" id="8" value=0 onchange="scored(8)"></td>
+				  </tr>
+				  <tr>
+				    <td>11010ECON 206101</td>
+				    <td>個體經濟學一</td>
+				    <td>W3W4F3F4</td>
+				    <td>周瑞賢</td>
+				    <td><INPUT TYPE="NUM" NAME="SCORE" id="9" value=0 onchange="scored(9)"></td>
+				  </tr>
+				  <tr>
+				    <td>11010ECON 206103</td>
+				    <td>個體經濟學一</td>
+				    <td>T3T4R3R4</td>
+				    <td>吳世英</td>
+				    <td><INPUT TYPE="NUM" NAME="SCORE" id="10" value=0 onchange="scored(10)"></td>
+				  </tr>
+				  <tr>
+				    <td>11010ECON 206104</td>
+				    <td>個體經濟學一</td>
+				    <td>W3W4F3F4</td>
+				    <td>蔡璧涵</td>
+				    <td><INPUT TYPE="NUM" NAME="SCORE" id="11" value=0 onchange="scored(11)"></td>
+				  </tr>
+				  <tr>
+				    <td>11010GEC 110200</td>
+				    <td>批判思考</td>
+				    <td>T3T4Tn</td>
+				    <td>趙之振</td>
+				    <td><INPUT TYPE="NUM" NAME="SCORE" id="12" value=0 onchange="scored(12)"></td>
+				  </tr>
+				  <tr>
+				    <td>11010GEC 111400</td>
+				    <td>思想經典：《韓非子》選讀</td>
+				    <td>W3W4</td>
+				    <td>洪巳軒</td>
+				    <td><INPUT TYPE="NUM" NAME="SCORE" id="13" value=0 onchange="scored(13)"></td>
+				  </tr>
+				  <tr>
+				    <td>11010GEC 120100</td>
+				    <td>當代生命科學</td>
+				    <td>T5T6</td>
+				    <td>周秀專</td>
+				    <td><INPUT TYPE="NUM" NAME="SCORE" id="14" value=0 onchange="scored(14)"></td>
+				  </tr>
+				  <tr>
+				    <td>11010CS 135800</td>
+				    <td>Python語言程式入門</td>
+				    <td>M2W3W4</td>
+				    <td>周百祥</td>
+				    <td><INPUT TYPE="NUM" NAME="SCORE" id="15" value=0 onchange="scored(15)"></td>
+				  </tr>
+				  <tr>
+				    <td>11010CS 342301</td>
+				    <td>作業系統</td>
+				    <td>M3M4W2</td>
+				    <td>周志遠</td>
+				    <td><INPUT TYPE="NUM" NAME="SCORE" id="16" value=0 onchange="scored(16)"></td>
+				  </tr>
+				  <tr>
+				    <td>11010CS 460200</td>
+				    <td>機器學習概論</td>
+				    <td>T3T4R3</td>
+				    <td>郭柏志</td>
+				    <td><INPUT TYPE="NUM" NAME="SCORE" id="17" value=0 onchange="scored(17)"></td>
+				  </tr>
+				</table>
+			</div>
+		</div>
+	</section>
+	<section class="ranking" id="ranking">
+		<h2 class="section-heading">Ranking</h2>
+		<p class="section-heading-description">Here we give you the best schedule depending on your scoring</p>
+		<button class="button-generate" onclick="generate_schedule()">Generate</button>
+		<div class="table-schedule">
+			<table class="schedule", id="schedule">
+				<tr>
+					<th></th>
+					<th>M</th>
+					<th>T</th>
+					<th>W</th>
+					<th>R</th>
+					<th>F</th>
+				</tr>
+				<tr>
+					<th>1</th>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<th>2</th>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<th>3</th>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<th>4</th>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<th>n</th>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<th>5</th>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<th>6</th>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<th>7</th>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<th>8</th>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<th>9</th>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<th>A</th>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<th>B</th>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<th>C</th>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+			</table>
+		</div>
+	</section>
+	<footer class="footer">
+		© NTHU Course Selection
+	</footer>
+</body>
+

@@ -1,0 +1,164 @@
+@charset "UTF-8";
+
+
+/* --------------------------------
+ * base
+ * -------------------------------- */
+html {
+	font-size: 62.5%;
+}
+body {
+  background: #151515;
+  color: #fff;
+  text-align: center;
+  font-size: 1.4rem;
+  font-family: Raleway, "Hiragino Kaku Gothic ProN", Meriyo, sans-serif;
+}
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+
+/* --------------------------------
+ * header
+ * -------------------------------- */
+.header {
+  padding: 70px 30px 70px;
+}
+.site-title-sub {
+  margin: 0 0 30px;
+  letter-spacing: 1px;
+  font-size: 2rem;
+}
+.site-title-sub::before,
+.site-title-sub::after {
+  content: '';
+  display: inline-block;
+  width: 140px;
+  height: 2px;
+  margin: 0 30px;
+  background-color: #fff;
+  vertical-align: middle;
+}
+.site-title {
+  margin: 50px 0 40px;
+  font-size: 5rem;
+}
+
+
+/* --------------------------------
+ * sections
+ * -------------------------------- */
+.section-heading {
+  font-size: 4rem;
+}
+.section-heading-description {
+  font-size: 1.75rem;
+}
+
+
+/* --------------------------------
+ * scoring
+ * -------------------------------- */
+.scoring {
+  padding: 10px 0 100px 0;
+  background-color: #0a030e;
+}
+.menu {
+  display: inline-block;
+  margin: 0 auto;
+  width: 600px;
+  background-color: transparent;;
+  z-index: 10;
+}
+.menu select {
+  border: none;
+  outline: none;
+  background-color: #0a032c;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  display: inline;
+  font-size: 14px;
+  border: 1px solid #3C1C78;
+  padding: 5px 10px;
+  cursor: pointer
+}
+.menu-department select {
+  margin: 0 75px 20px;
+  float: left;
+}
+.menu-time select {
+  margin: 0 75px 20px;
+  float: right;
+}
+.table-courses {
+  width: 650px;
+  padding-right: 50px;
+  height: 450px;
+  overflow: auto;
+}
+.table-courses table {
+  margin: 50px auto;
+  background-color: #0a032c;
+}
+.table-courses tr:hover {
+  color: #0a032c;
+  background-color: #ffffff;
+}
+.table-courses table, th, td {
+  border: none;
+  border: 1px solid #3C1C78;
+  width: 600px;
+  border-collapse: collapse;
+}
+input[type=num] {
+  background-color: #0a032c;
+  color: white;
+  width: 30px;
+  text-align: center;
+}
+
+
+
+
+/* --------------------------------
+ * ranking
+ * -------------------------------- */
+.ranking {
+  padding-bottom:  100px;
+  display: inline-block;
+  margin: 0 auto;
+  width: 900px;
+  background-color: transparent;;
+}
+.button-generate {
+  padding: 12px 24px;
+  margin-bottom: 75px;
+  border: none;
+  outline: none;
+  background-color: #0a032c;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  font-size: 18px;
+  border: 1px solid #3C1C78;
+  cursor: pointer
+}
+.table-schedule {
+
+}
+.table-schedule table {
+  
+  background-color: #0a032c;
+}
+
+
+
+/* --------------------------------
+ * footer
+ * -------------------------------- */
+.footer {
+  padding: 12px 0;
+  font-size: 1.3rem;
+}
