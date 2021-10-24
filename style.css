@@ -126,11 +126,11 @@ input[type=num] {
  * ranking
  * -------------------------------- */
 .ranking {
-  padding-bottom:  100px;
+  padding: 10px 0 100px 0;
   display: inline-block;
   margin: 0 auto;
   width: 900px;
-  background-color: transparent;;
+  background-color: transparent;
 }
 .button-generate {
   padding: 12px 24px;
@@ -145,11 +145,7 @@ input[type=num] {
   border: 1px solid #3C1C78;
   cursor: pointer
 }
-.table-schedule {
-
-}
 .table-schedule table {
-  
   background-color: #0a032c;
 }
 
@@ -161,4 +157,73 @@ input[type=num] {
 .footer {
   padding: 12px 0;
   font-size: 1.3rem;
+}
+
+/* --------------------------------
+ * smart phone
+ * -------------------------------- */
+@media (max-width: 768px) {
+  .heading {
+    margin-top: 20px;
+    font-size: 2.5rem;
+  }
+  .body {
+    font-size: 1.3rem;
+  }
+
+  /* --- header --- */
+  .header {
+    padding-top: 60px;
+  }
+  .site-title-sub::before,
+  .site-title-sub::after {
+    display: block;
+    width: 80%;
+    margin: 10px auto;
+  }
+  .site-title-sub {
+    font-size: 1.7rem;
+  }
+  .site-title {
+    margin-top: 35px;
+    font-size: 5rem;
+  }
+
+  /* --- sections --- */
+  .section-heading {
+    font-size: 4rem;
+  }
+  .section-heading-description {
+    font-size: 1.4rem;
+  }
+
+  /* --- scoring --- */
+
+  .menu {
+    width: 400px;
+  }
+  .menu select {
+    font-size: 7px;
+  }
+  .menu-department select {
+    margin: 0 20px 20px;
+  }
+  .menu-time select {
+    margin: 0 20px 20px;
+  }
+  .table-courses {
+    width: 400px;
+  }
+  .table-courses table, th, td {
+    font-size: 10px;
+    width: 400px;
+  }
+
+  /* --- ranking --- */
+
+  .ranking {
+    width: 400px;
+  }
+
+
 }
