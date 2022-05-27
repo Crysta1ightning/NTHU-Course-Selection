@@ -10,3 +10,6 @@ In the ranking section, users simply need to click a button, and the website gen
 
 The curriculum's good or bad is decided by the scores user gave.
 The websites uses a simple recursion to test which curriculum gives the highest score. 
+
+Web link:
+https://crysta1ightning.github.io/NTHU-Course-Selection/
